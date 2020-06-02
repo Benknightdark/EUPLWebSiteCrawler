@@ -23,10 +23,12 @@ var fs = require('fs');
             ID:uuidv4(),
             Category:currentTypeName,
             Icon:'',
-
             IsEnable:1,
-
             Seq:index,
+            InitUID:'BD3A1EFC-17FD-4EC7-8E8D-F7926E30268C',
+            InitDT:'2020-06-02 11:20:03.930',
+            ModifiedUID:'BD3A1EFC-17FD-4EC7-8E8D-F7926E30268C',
+            ModifiedDT:'2020-06-02 11:20:03.930'
         }
         categoryArray.push(CategoryData)
         console.log(CategoryData)
@@ -52,6 +54,10 @@ var fs = require('fs');
                 IsEnable:1,
                 Seq:index,
                 Publisher:$(element).find('.poster').text(),
+                InitUID:'BD3A1EFC-17FD-4EC7-8E8D-F7926E30268C',
+                InitDT:'2020-06-02 11:20:03.930',
+                ModifiedUID:'BD3A1EFC-17FD-4EC7-8E8D-F7926E30268C',
+                ModifiedDT:'2020-06-02 11:20:03.930'
             }
             detailArray.push(detailData)
             console.log(detailData);
