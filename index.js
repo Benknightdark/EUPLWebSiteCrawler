@@ -4,13 +4,9 @@ const { v4: uuidv4 } = require('uuid');
 const json2xls = require('json2xls');
 var fs = require('fs');
 (async () => {
-    // const workbook = new xlsx.Workbook();
-
-
-
     const categoryArray=[];
     const detailArray=[];
-    const sidArray = [4]//, 5, 17, 44
+    const sidArray = [4, 5, 17, 44]//
     const browser = await puppeteer.launch({ headless: false });
 
     for (let index = 0; index < sidArray.length; index++) {
