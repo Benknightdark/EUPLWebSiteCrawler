@@ -71,5 +71,5 @@ var fs = require('fs');
     fs.writeFileSync(`Category.xlsx`, xls, 'binary');
 
     let xls2 = json2xls(detailArray);
-    fs.writeFileSync(`Detail.xlsx`, xls, 'binary');
+    fs.writeFileSync(`Detail.xlsx`, xls2, 'binary');
 })();
