@@ -1,9 +1,16 @@
 const puppeteer = require('puppeteer');
 const cheerio = require('cheerio');
-import { v4 as uuidv4 } from 'uuid';
-
+const { v4: uuidv4 } = require('uuid');
+const json2xls = require('json2xls');
+var fs = require('fs');
 (async () => {
-    const sidArray = [4, 5, 17, 44]
+    // const workbook = new xlsx.Workbook();
+
+
+
+    const categoryArray=[];
+    const detailArray=[];
+    const sidArray = [4]//, 5, 17, 44
     const browser = await puppeteer.launch({ headless: false });
 
     for (let index = 0; index < sidArray.length; index++) {
@@ -15,6 +22,7 @@ import { v4 as uuidv4 } from 'uuid';
         const item=$('.item');
         const currentTypeName=$('.current').attr('title')
         console.log(currentTypeName);
+
         const CategoryData={
             ID:uuidv4(),
             Category:currentTypeName,
@@ -24,6 +32,7 @@ import { v4 as uuidv4 } from 'uuid';
 
             Seq:index,
         }
+        categoryArray.push(CategoryData)
         console.log(CategoryData)
         for (let index = 0; index < item.length; index++) {
             const element = item[index];
@@ -48,6 +57,7 @@ import { v4 as uuidv4 } from 'uuid';
                 Seq:index,
                 Publisher:$(element).find('.poster').text(),
             }
+            detailArray.push(detailData)
             console.log(detailData);
 
         }
@@ -56,4 +66,10 @@ import { v4 as uuidv4 } from 'uuid';
 
 
     await browser.close();
+
+    let xls = json2xls(categoryArray);
+    fs.writeFileSync(`Category.xlsx`, xls, 'binary');
+
+    let xls2 = json2xls(detailArray);
+    fs.writeFileSync(`Detail.xlsx`, xls, 'binary');
 })();
